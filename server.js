@@ -25,6 +25,7 @@ const reportRoutes   = require("./routes/reportRoutes");
 const uploadRoutes   = require("./routes/uploadRoutes");
 const offerRoutes    = require("./routes/offerRoutes");
 const homeContentRoutes = require("./routes/homeContentRoutes");
+const backgroundRoutes = require("./routes/backgroundRoutes");
 const { defaultOffers } = require("./controllers/offerController");
 const { defaultHomeContent } = require("./controllers/homeContentController");
 
@@ -303,6 +304,7 @@ app.post("/api/upload", universalProtect, universalAdmin, (req, res, next) => {
 });
 
 app.use("/api/upload", uploadRoutes);
+app.use("/api/backgrounds", backgroundRoutes);
 
 // ── Static Uploads ────────────────────────────────────────────────────────────
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
