@@ -38,6 +38,16 @@ const orderSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    paymentStatus: {
+      type: String,
+      enum: ["Pending", "Paid", "Failed", "Refunded"],
+      default: "Pending",
+    },
+    lastFourDigits: {
+      type: String,
+      default: "",
+      match: [/^\d{4}$|^$/, "Last four digits must contain exactly 4 digits"],
+    },
     paymentResult: {
       id: { type: String },
       status: { type: String },

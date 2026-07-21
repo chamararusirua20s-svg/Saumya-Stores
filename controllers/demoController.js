@@ -121,6 +121,8 @@ const DEMO_ORDERS = [
     ],
     shippingAddress: { address: "123 Main St", city: "Colombo", postalCode: "00100", country: "Sri Lanka" },
     paymentMethod: "Credit Card",
+    paymentStatus: "Paid",
+    lastFourDigits: "4242",
     itemsPrice: 530,
     taxPrice: 26.5,
     shippingPrice: 250,
@@ -138,6 +140,8 @@ const DEMO_ORDERS = [
     ],
     shippingAddress: { address: "45 Galle Rd", city: "Galle", postalCode: "00200", country: "Sri Lanka" },
     paymentMethod: "Cash on Delivery",
+    paymentStatus: "Pending",
+    lastFourDigits: "",
     itemsPrice: 1650,
     taxPrice: 82.5,
     shippingPrice: 250,
@@ -310,6 +314,12 @@ const demoGetOrders = (req, res) => res.json(DEMO_ORDERS);
 
 const demoCreateOrder = (req, res) => {
   const { orderItems, shippingAddress, paymentMethod, itemsPrice, taxPrice, shippingPrice, totalPrice } = req.body;
+  const isCreditCard = paymentMethod === "Credit Card";
+  const lastFourDigits = String(req.body.lastFourDigits || "").replace(/\D/g, "").slice(-4);
+
+  if (isCreditCard && lastFourDigits.length !== 4) {
+    return res.status(400).json({ message: "Last four card digits are required for credit card payments" });
+  }
   
   // Find customer placing the order
   const userId = req.user ? req.user._id : "u_1";
@@ -321,12 +331,14 @@ const demoCreateOrder = (req, res) => {
     orderItems,
     shippingAddress,
     paymentMethod,
+    paymentStatus: isCreditCard ? "Paid" : "Pending",
+    lastFourDigits: isCreditCard ? lastFourDigits : "",
     itemsPrice,
     taxPrice,
     shippingPrice,
     totalPrice,
-    isPaid: paymentMethod === "Credit Card",
-    paidAt: paymentMethod === "Credit Card" ? new Date() : null,
+    isPaid: isCreditCard,
+    paidAt: isCreditCard ? new Date() : null,
     isDelivered: false,
     createdAt: new Date(),
   };
@@ -460,6 +472,7 @@ module.exports = {
   // Orders
   demoGetOrders,
   demoCreateOrder,
+  DEMO_ORDERS,
   // Dashboard
   demoDashboardStats,
   // Upload

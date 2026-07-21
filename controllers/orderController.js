@@ -23,6 +23,8 @@ const findSelectedVariant = (product, item) => {
   return product.variants.length === 1 ? product.variants[0] : null;
 };
 
+const getLastFourDigits = (value) => String(value || "").replace(/\D/g, "").slice(-4);
+
 // @desc    Create new order
 // @route   POST /api/orders
 // @access  Private
@@ -35,12 +37,21 @@ const addOrderItems = async (req, res) => {
     taxPrice,
     shippingPrice,
     totalPrice,
+    lastFourDigits,
   } = req.body;
 
-  if (orderItems && orderItems.length === 0) {
+  if (!orderItems || orderItems.length === 0) {
     res.status(400).json({ message: "No order items" });
     return;
   } else {
+    const isCreditCard = paymentMethod === "Credit Card";
+    const sanitizedLastFour = getLastFourDigits(lastFourDigits);
+
+    if (isCreditCard && sanitizedLastFour.length !== 4) {
+      res.status(400).json({ message: "Last four card digits are required for credit card payments" });
+      return;
+    }
+
     const validatedItems = [];
 
     for (const item of orderItems) {
@@ -97,6 +108,17 @@ const addOrderItems = async (req, res) => {
       user: req.user._id,
       shippingAddress,
       paymentMethod,
+      paymentStatus: isCreditCard ? "Paid" : "Pending",
+      lastFourDigits: isCreditCard ? sanitizedLastFour : "",
+      isPaid: isCreditCard,
+      paidAt: isCreditCard ? Date.now() : undefined,
+      paymentResult: isCreditCard
+        ? {
+            id: `demo_card_${Date.now()}`,
+            status: "succeeded",
+            update_time: new Date().toISOString(),
+          }
+        : undefined,
       itemsPrice,
       taxPrice,
       shippingPrice,
@@ -150,6 +172,7 @@ const updateOrderToPaid = async (req, res) => {
   if (order) {
     order.isPaid = true;
     order.paidAt = Date.now();
+    order.paymentStatus = "Paid";
     order.paymentResult = {
       id: req.body.id,
       status: req.body.status,

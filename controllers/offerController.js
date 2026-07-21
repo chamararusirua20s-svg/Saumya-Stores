@@ -152,22 +152,29 @@ const ensureDefaultOffers = async () => {
   }
 };
 
-const normalizeOfferPayload = (body) => ({
-  title: body.title,
-  subtitle: body.subtitle || "",
-  description: body.description,
-  offerType: body.offerType || "today",
-  discount: Number(body.discount) || 0,
-  image: body.image || body.desktopBanner || "",
-  desktopBanner: body.desktopBanner || body.image || "",
-  mobileBanner: body.mobileBanner || body.image || body.desktopBanner || "",
-  buttonText: body.buttonText || "Shop Now",
-  status: body.status || (body.enabled === false ? "hidden" : "active"),
-  enabled: body.enabled !== false,
-  startDate: body.startDate,
-  endDate: body.endDate,
-  displayOrder: Number(body.displayOrder) || 0,
-});
+const normalizeOfferPayload = (body) => {
+  const isActive = body.active !== undefined ? Boolean(body.active) : (body.enabled !== false && body.status !== "hidden");
+  
+  let startDate = body.startDate ? new Date(body.startDate) : new Date();
+  let endDate = body.endDate ? new Date(String(body.endDate).includes("T") ? body.endDate : `${body.endDate}T23:59:59.999Z`) : new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
+
+  return {
+    title: body.title,
+    subtitle: body.subtitle || "",
+    description: body.description,
+    offerType: body.offerType || "today",
+    discount: Number(body.discount) || 0,
+    image: body.image || body.desktopBanner || "",
+    desktopBanner: body.desktopBanner || body.image || "",
+    mobileBanner: body.mobileBanner || body.image || body.desktopBanner || "",
+    buttonText: body.buttonText || "Shop Now",
+    status: isActive ? "active" : "hidden",
+    enabled: isActive,
+    startDate,
+    endDate,
+    displayOrder: Number(body.displayOrder) || 0,
+  };
+};
 
 const getPublicOffers = async (req, res) => {
   await ensureDefaultOffers();

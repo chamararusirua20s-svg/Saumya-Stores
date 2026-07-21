@@ -199,7 +199,7 @@ app.get("/api/orders/:id", universalProtect, (req, res, next) => {
 app.put("/api/orders/:id/pay", universalProtect, (req, res, next) => {
   if (isDBConnected()) return next();
   // Demo: just return success
-  return res.json({ message: "Order marked as paid (demo)", isPaid: true, paidAt: new Date() });
+  return res.json({ message: "Order marked as paid (demo)", isPaid: true, paymentStatus: "Paid", paidAt: new Date() });
 });
 
 app.post("/api/orders", universalProtect, (req, res, next) => {
