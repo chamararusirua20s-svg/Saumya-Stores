@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Poppins', 'Inter', system-ui, -apple-system, sans-serif;
+  color-scheme: light;
+}
+
+body {
+  background-color: #F8FAF5;
+  color: #1F2937;
+  overflow-x: hidden;
+}
+
+/* Custom button styles */
+.btn {
+  @apply inline-flex items-center justify-center px-5 py-2.5 rounded-xl font-semibold transition-all duration-200 active:scale-95 disabled:opacity-50 disabled:pointer-events-none;
+}
+
+.btn-primary {
+  @apply bg-[#16A34A] text-white hover:bg-[#15803d] shadow-sm hover:shadow-md hover:shadow-green-600/20;
+}
+
+.btn-dark {
+  @apply bg-[#14532D] text-white hover:bg-[#0f3d21] shadow-sm hover:shadow-md;
+}
+
+.btn-secondary {
+  @apply bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300;
+}
+
+.btn-accent {
+  @apply bg-[#F59E0B] text-white hover:bg-[#d97706] shadow-sm hover:shadow-amber-500/20;
+}
+
+.btn-outline {
+  @apply bg-transparent border-2 border-[#16A34A] text-[#16A34A] hover:bg-[#16A34A] hover:text-white;
+}
+
+/* Card styles */
+.card {
+  @apply bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow;
+}
+
+.card-hover-effect {
+  @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-emerald-500/20;
+}
+
+/* Input styles */
+.input {
+  @apply w-full py-2.5 px-4 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#16A34A]/25 focus:border-[#16A34A] transition-all text-sm text-gray-800 placeholder-gray-400;
+}
+
+/* Responsive layout containers */
+.container-custom {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Glassmorphism */
+.glass {
+  @apply bg-white/85 backdrop-blur-md border border-white/40 shadow-sm;
+}
+
+.glass-dark {
+  @apply bg-black/60 backdrop-blur-md border border-white/10;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hide Scrollbar */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Custom Modern Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Skeleton Loading Shimmer */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-box {
+  background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+/* Badges */
+.badge-discount {
+  @apply bg-red-500 text-white font-extrabold text-[10px] px-2.5 py-1 rounded-full shadow-sm;
+}
+
+.badge-fresh {
+  @apply bg-emerald-600 text-white font-bold text-[10px] px-2.5 py-1 rounded-full shadow-sm;
+}
+
+.badge-low-stock {
+  @apply bg-amber-500 text-white font-bold text-[10px] px-2.5 py-1 rounded-full shadow-sm;
+}
