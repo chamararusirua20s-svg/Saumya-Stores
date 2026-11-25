@@ -12,6 +12,7 @@ import WhyShopWithUs from "../components/home/WhyShopWithUs";
 import ProductSlider from "../components/home/ProductSlider";
 import Testimonials from "../components/home/Testimonials";
 import PopularBrands from "../components/home/PopularBrands";
+import BrandLogo from "../components/BrandLogo";
 import { DEFAULT_CONTENT, fetchHomepageContent } from "../utils/homeContentStorage";
 
 const Home = () => {
@@ -335,7 +336,10 @@ const Home = () => {
       {/* 15. Newsletter & Deal Alerts Subscription */}
       <section className="container-custom py-8">
         <div className="bg-gradient-to-br from-[#14532D] to-[#16A34A] rounded-3xl p-8 sm:p-14 md:p-16 relative overflow-hidden text-center text-white shadow-xl shadow-emerald-950/15">
-          <div className="relative z-10 max-w-2xl mx-auto space-y-6">
+          <div className="relative z-10 max-w-2xl mx-auto space-y-5">
+            <div className="flex justify-center">
+              <BrandLogo variant="card" size="md" href={null} />
+            </div>
             <span className="inline-block px-3.5 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-bold uppercase tracking-wider text-amber-300">
               Supermarket Deal Alerts
             </span>

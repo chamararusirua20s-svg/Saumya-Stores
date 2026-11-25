@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import { Link, Navigate } from "react-router-dom";
-import { ArrowRight, ShoppingBag, ShieldCheck, Truck, Package } from "lucide-react";
+import { ArrowRight, ShieldCheck, Truck, Package } from "lucide-react";
 import { AuthContext } from "../context/AuthContext";
 import heroImg from "../assets/hero.png";
+import BrandLogo from "../components/BrandLogo";
 
 const Landing = () => {
   const { user } = useContext(AuthContext);
@@ -18,11 +19,11 @@ const Landing = () => {
       <section className="relative bg-secondary-light overflow-hidden">
         <div className="container-custom">
           <div className="flex flex-col md:flex-row items-center py-12 md:py-24">
-            <div className="md:w-1/2 space-y-8 z-10">
-              <span className="inline-block px-4 py-1 bg-primary/10 text-primary font-bold rounded-full text-xs uppercase tracking-wider">
-                Saumya Stores Exclusive
-              </span>
-              <h1 className="text-5xl md:text-7xl font-extrabold text-gray-900 leading-tight">
+            <div className="md:w-1/2 space-y-6 z-10">
+              <div className="mb-2">
+                <BrandLogo size="lg" />
+              </div>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight">
                 Quality Groceries <br />
                 <span className="text-primary italic">Delivered</span> to You
               </h1>

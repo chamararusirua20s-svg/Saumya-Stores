@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { X, Trash2, Plus, Minus, ShoppingBag, ArrowRight, Truck, ShieldCheck } from "lucide-react";
+import { X, Trash2, Plus, Minus, ArrowRight, Truck, ShieldCheck } from "lucide-react";
 import { CartContext } from "../context/CartContext";
 import { AuthModalContext } from "../context/AuthModalContext";
+import BrandLogo from "./BrandLogo";
 
 const FREE_DELIVERY_THRESHOLD = 5000;
 
@@ -53,9 +54,7 @@ const CartDrawer = () => {
           {/* Header */}
           <div className="p-5 border-b border-gray-100 flex items-center justify-between bg-[#F8FAF5]">
             <div className="flex items-center space-x-2.5">
-              <div className="w-10 h-10 rounded-xl bg-emerald-100 text-[#16A34A] flex items-center justify-center">
-                <ShoppingBag className="w-5 h-5" />
-              </div>
+              <BrandLogo variant="symbol" href={null} size="sm" />
               <div>
                 <h3 className="font-extrabold text-gray-900 text-lg tracking-tight">Shopping Cart</h3>
                 <p className="text-xs text-gray-500 font-medium">
@@ -98,8 +97,8 @@ const CartDrawer = () => {
           <div className="flex-1 overflow-y-auto p-5 space-y-4 divide-y divide-gray-100">
             {cartItems.length === 0 ? (
               <div className="h-full flex flex-col items-center justify-center text-center py-12 px-4 space-y-4">
-                <div className="w-20 h-20 rounded-full bg-emerald-50 text-[#16A34A] flex items-center justify-center">
-                  <ShoppingBag className="w-10 h-10" />
+                <div className="w-20 h-20 rounded-3xl bg-emerald-50/70 p-3 flex items-center justify-center">
+                  <BrandLogo variant="symbol" href={null} size="lg" />
                 </div>
                 <div className="space-y-1">
                   <h4 className="font-bold text-gray-900 text-lg">Your cart is empty</h4>

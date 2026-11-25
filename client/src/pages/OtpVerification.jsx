@@ -3,6 +3,7 @@ import { useNavigate, useSearchParams, Link } from "react-router-dom";
 import { ShieldCheck, Mail, RefreshCw, ArrowRight, CheckCircle } from "lucide-react";
 import toast from "react-hot-toast";
 import axios from "axios";
+import BrandLogo from "../components/BrandLogo";
 
 const OTP_LENGTH = 6;
 const RESEND_COOLDOWN = 60; // seconds
@@ -160,10 +161,8 @@ const OtpVerification = () => {
     <div className="min-h-[85vh] flex items-center justify-center py-10 px-4 bg-[#F8FAF5]">
       <div className="max-w-md w-full bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-br from-[#14532D] to-[#16A34A] p-8 text-center text-white space-y-2">
-          <div className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center mx-auto mb-3 shadow-md">
-            <ShieldCheck className="w-7 h-7 text-white" />
-          </div>
+        <div className="bg-gradient-to-br from-[#14532D] to-[#16A34A] p-8 text-center text-white space-y-3">
+          <BrandLogo variant="card" size="lg" />
           <h2 className="text-2xl font-black tracking-tight">Verify Your Email</h2>
           <p className="text-xs text-emerald-100 font-medium">
             Enter the 6-digit code sent to your email

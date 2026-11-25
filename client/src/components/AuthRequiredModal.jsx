@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Lock, ShoppingBag, ArrowRight, UserPlus, X, Sparkles } from "lucide-react";
+import { Lock, ArrowRight, UserPlus, X, Sparkles } from "lucide-react";
 import { AuthModalContext } from "../context/AuthModalContext";
+import BrandLogo from "./BrandLogo";
 
 const AuthRequiredModal = () => {
   const { isAuthModalOpen, closeAuthModal, redirectPath } = useContext(AuthModalContext);
@@ -40,13 +41,9 @@ const AuthRequiredModal = () => {
 
         {/* Top Header Banner */}
         <div className="bg-gradient-to-br from-[#14532D] to-[#16A34A] p-6 text-center text-white relative">
-          <div className="w-16 h-16 rounded-2xl bg-white/15 backdrop-blur-md border border-white/20 flex items-center justify-center mx-auto mb-3 shadow-lg">
-            <ShoppingBag className="w-8 h-8 text-white" />
+          <div className="mb-3">
+            <BrandLogo variant="card" size="md" href={null} />
           </div>
-          <span className="inline-flex items-center space-x-1 text-[11px] font-black uppercase tracking-wider bg-white/20 px-3 py-0.5 rounded-full mb-1">
-            <Sparkles className="w-3 h-3 text-amber-300" />
-            <span>Saumya Stores Member Access</span>
-          </span>
           <h3 className="text-xl sm:text-2xl font-black tracking-tight">
             Account Required
           </h3>

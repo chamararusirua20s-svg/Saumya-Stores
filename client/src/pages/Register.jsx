@@ -16,6 +16,7 @@ import {
 import { AuthContext } from "../context/AuthContext";
 import toast from "react-hot-toast";
 import axios from "axios";
+import BrandLogo from "../components/BrandLogo";
 
 const PASSWORD_RULES = [
   { label: "At least 8 characters", test: (p) => p.length >= 8 },
@@ -110,10 +111,8 @@ const Register = () => {
     <div className="min-h-[90vh] flex items-center justify-center py-10 px-4 bg-[#F8FAF5]">
       <div className="max-w-lg w-full bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-br from-[#14532D] to-[#16A34A] p-8 text-center text-white space-y-2">
-          <div className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center mx-auto mb-3 shadow-md">
-            <ShoppingBag className="w-7 h-7 text-white" />
-          </div>
+        <div className="bg-gradient-to-br from-[#14532D] to-[#16A34A] p-8 text-center text-white space-y-3">
+          <BrandLogo variant="card" size="lg" />
           <h2 className="text-2xl sm:text-3xl font-black tracking-tight">Create Account</h2>
           <p className="text-xs text-emerald-100 font-medium">
             Join Saumya Stores · Fresh Groceries · Fast Delivery

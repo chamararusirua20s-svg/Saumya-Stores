@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { AuthContext } from "../context/AuthContext";
 import AdminChangePasswordModal from "./AdminChangePasswordModal";
+import BrandLogo from "./BrandLogo";
 
 const AdminLayout = () => {
   const { user, logout } = useContext(AuthContext);
@@ -40,13 +41,11 @@ const AdminLayout = () => {
     <div className="flex h-full bg-gray-50 min-h-screen">
       {/* Sidebar */}
       <aside className="w-64 bg-white border-r hidden lg:flex flex-col sticky top-0 h-screen">
-        <div className="p-8 border-b">
-           <Link to="/" className="flex items-center space-x-2">
-            <div className="bg-primary p-2 rounded-lg text-white">
-               <Package className="w-6 h-6" />
-            </div>
-             <span className="text-xl font-bold text-gray-900 tracking-tight">Admin<span className="text-primary">Panel</span></span>
-          </Link>
+        <div className="p-5 border-b flex flex-col items-center">
+          <BrandLogo size="md" />
+          <span className="mt-2 text-[10px] uppercase font-black tracking-widest text-[#14532D] bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-100">
+            Admin Portal
+          </span>
         </div>
         
        <nav className="flex-1 overflow-y-auto px-4 py-8 space-y-2">

@@ -18,6 +18,7 @@ import {
 import axios from "axios";
 import { authHeaders } from "../utils/auth";
 import toast from "react-hot-toast";
+import BrandLogo from "../components/BrandLogo";
 
 const STATUS_STYLES = {
   Pending: "bg-amber-50 text-amber-700 border-amber-200",
@@ -168,12 +169,15 @@ const OrderDetails = ({ showSuccessBanner = false }) => {
         </div>
 
         {showSuccessBanner && (
-          <div className="rounded-3xl border border-emerald-100 bg-white p-6 text-center shadow-sm print:hidden">
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 shadow-lg shadow-emerald-100/60">
-              <Check size={34} strokeWidth={3} />
+          <div className="rounded-3xl border border-emerald-100 bg-white p-6 sm:p-8 text-center shadow-sm print:hidden space-y-3">
+            <div className="flex justify-center">
+              <BrandLogo size="lg" />
             </div>
-            <h1 className="mt-4 text-3xl font-extrabold text-gray-900">Order placed successfully</h1>
-            <p className="mx-auto mt-2 max-w-xl text-gray-500">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 shadow-md">
+              <Check size={30} strokeWidth={3} />
+            </div>
+            <h1 className="mt-3 text-2xl sm:text-3xl font-extrabold text-gray-900">Order Placed Successfully!</h1>
+            <p className="mx-auto mt-2 max-w-xl text-xs sm:text-sm text-gray-500">
               Thank you for shopping with Saumya Stores. Your order is registered and ready for tracking.
             </p>
           </div>

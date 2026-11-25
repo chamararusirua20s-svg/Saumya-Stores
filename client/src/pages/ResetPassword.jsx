@@ -3,6 +3,7 @@ import { useNavigate, useSearchParams, Link } from "react-router-dom";
 import { Lock, Eye, EyeOff, ArrowRight, KeyRound, CheckCircle, XCircle } from "lucide-react";
 import toast from "react-hot-toast";
 import axios from "axios";
+import BrandLogo from "../components/BrandLogo";
 
 const PASSWORD_RULES = [
   { label: "At least 8 characters", test: (p) => p.length >= 8 },
@@ -106,10 +107,8 @@ const ResetPassword = () => {
     <div className="min-h-[85vh] flex items-center justify-center py-10 px-4 bg-[#F8FAF5]">
       <div className="max-w-md w-full bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-br from-[#14532D] to-[#16A34A] p-8 text-center text-white space-y-2">
-          <div className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center mx-auto mb-3 shadow-md">
-            <KeyRound className="w-7 h-7 text-white" />
-          </div>
+        <div className="bg-gradient-to-br from-[#14532D] to-[#16A34A] p-8 text-center text-white space-y-3">
+          <BrandLogo variant="card" size="lg" />
           <h2 className="text-2xl font-black tracking-tight">Reset Password</h2>
           <p className="text-xs text-emerald-100 font-medium">
             Create a strong new password for your account

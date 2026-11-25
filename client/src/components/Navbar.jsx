@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import BrandLogo from "./BrandLogo";
 import {
   ShoppingBag,
   User,
@@ -186,19 +187,7 @@ const Navbar = () => {
       <div className="container-custom py-3 sm:py-4">
         <div className="flex items-center justify-between gap-4">
           {/* Brand Logo */}
-          <Link to="/" className="flex items-center space-x-2.5 shrink-0 group">
-            <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#16A34A] to-[#14532D] p-2.5 flex items-center justify-center shadow-md shadow-emerald-700/20 group-hover:scale-105 transition-transform">
-              <ShoppingBag className="text-white w-6 h-6 stroke-[2.2]" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-2xl font-black tracking-tight leading-none text-[#14532D]">
-                Saumya<span className="text-[#16A34A]">Stores</span>
-              </span>
-              <span className="text-[10px] font-bold text-gray-500 tracking-wider uppercase mt-0.5">
-                Supermarket & Fresh Mart
-              </span>
-            </div>
-          </Link>
+          <BrandLogo size="header" />
 
           {/* Large Intelligent Search Bar */}
           <div ref={searchRef} className="hidden md:flex flex-1 max-w-2xl relative mx-2">
@@ -533,6 +522,16 @@ const Navbar = () => {
       {/* ── Mobile Hamburger Drawer ── */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-white border-t border-gray-100 p-5 space-y-5 animate-fade-in shadow-xl">
+          {/* Mobile Drawer Brand Header */}
+          <div className="flex items-center justify-between pb-3 border-b border-gray-100">
+            <div onClick={() => setMobileMenuOpen(false)}>
+              <BrandLogo size="sm" />
+            </div>
+            <span className="text-[10px] font-black uppercase tracking-wider text-emerald-800 bg-emerald-50 px-2 py-1 rounded-md border border-emerald-100">
+              Supermarket
+            </span>
+          </div>
+
           {/* Location button for mobile */}
           <button
             onClick={() => {

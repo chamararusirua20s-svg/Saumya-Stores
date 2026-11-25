@@ -18,6 +18,7 @@ import { LocationContext } from "../context/LocationContext";
 import { AuthContext } from "../context/AuthContext";
 import { AuthModalContext } from "../context/AuthModalContext";
 import toast from "react-hot-toast";
+import BrandLogo from "../components/BrandLogo";
 
 const FREE_DELIVERY_THRESHOLD = 5000;
 
@@ -61,8 +62,8 @@ const Cart = () => {
     return (
       <div className="bg-[#F8FAF5] min-h-[70vh] flex items-center justify-center py-16 px-4">
         <div className="bg-white p-8 sm:p-12 rounded-3xl border border-gray-100 shadow-sm max-w-md w-full text-center space-y-6">
-          <div className="w-24 h-24 mx-auto bg-emerald-50 text-[#16A34A] rounded-full flex items-center justify-center">
-            <ShoppingBag size={48} />
+          <div className="w-24 h-24 mx-auto bg-emerald-50 rounded-3xl p-4 flex items-center justify-center">
+            <BrandLogo variant="symbol" href={null} size="xl" />
           </div>
           <div className="space-y-2">
             <h2 className="text-2xl font-black text-gray-900">Your Basket is Empty</h2>

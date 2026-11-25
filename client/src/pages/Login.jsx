@@ -1,8 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { Mail, Lock, Eye, EyeOff, ArrowRight, ShoppingBag, Sparkles } from "lucide-react";
+import { Mail, Lock, Eye, EyeOff, ArrowRight } from "lucide-react";
 import { AuthContext } from "../context/AuthContext";
 import toast from "react-hot-toast";
+import BrandLogo from "../components/BrandLogo";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -46,14 +47,8 @@ const Login = () => {
           <div className="absolute -top-12 -right-12 w-32 h-32 bg-white/10 rounded-full blur-xl pointer-events-none" />
           <div className="absolute -bottom-12 -left-12 w-32 h-32 bg-emerald-400/20 rounded-full blur-xl pointer-events-none" />
 
-          <div className="relative z-10 space-y-2">
-            <div className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-md border border-white/25 flex items-center justify-center mx-auto shadow-md">
-              <ShoppingBag className="w-7 h-7 text-white" />
-            </div>
-            <span className="inline-flex items-center space-x-1 text-[11px] font-black uppercase tracking-wider bg-white/20 text-emerald-100 px-3 py-0.5 rounded-full">
-              <Sparkles className="w-3 h-3 text-amber-300 mr-1" />
-              <span>Saumya Stores</span>
-            </span>
+          <div className="relative z-10 space-y-3">
+            <BrandLogo variant="card" size="lg" />
             <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-white">
               Welcome Back
             </h2>
