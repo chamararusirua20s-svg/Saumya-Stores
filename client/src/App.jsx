@@ -25,6 +25,10 @@ import Landing from "./pages/Landing";
 import Shop from "./pages/Shop";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import OtpVerification from "./pages/OtpVerification";
+import ForgotPassword from "./pages/ForgotPassword";
+import ForgotPasswordOtp from "./pages/ForgotPasswordOtp";
+import ResetPassword from "./pages/ResetPassword";
 import Cart from "./pages/Cart";
 import ProductDetail from "./pages/ProductDetail";
 import Shipping from "./pages/Shipping";
@@ -135,6 +139,10 @@ function App() {
                 {/* ── Public Auth Routes ── */}
                 <Route path="/login" element={<CustomerLayout><Login /></CustomerLayout>} />
                 <Route path="/register" element={<CustomerLayout><Register /></CustomerLayout>} />
+                <Route path="/verify-email" element={<CustomerLayout><OtpVerification /></CustomerLayout>} />
+                <Route path="/forgot-password" element={<CustomerLayout><ForgotPassword /></CustomerLayout>} />
+                <Route path="/forgot-password/verify" element={<CustomerLayout><ForgotPasswordOtp /></CustomerLayout>} />
+                <Route path="/reset-password" element={<CustomerLayout><ResetPassword /></CustomerLayout>} />
 
                 {/* ── Protected Customer Checkout & Orders ── */}
                 <Route

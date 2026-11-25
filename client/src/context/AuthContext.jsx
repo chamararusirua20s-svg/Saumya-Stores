@@ -27,26 +27,30 @@ export const AuthProvider = ({ children }) => {
       return { success: true };
     } catch (error) {
       setLoading(false);
+      const errData = error.response?.data;
       return {
         success: false,
-        message: error.response?.data?.message || error.message,
+        message: errData?.message || error.message,
+        requiresVerification: errData?.requiresVerification || false,
+        email: errData?.email,
       };
     }
   };
 
-  const register = async (name, email, password, phone) => {
+  // register is handled directly in Register.jsx via axios – no auto-login
+  // This is kept for compatibility if any other component calls it
+  const register = async (name, email, password, phone, deliveryAddress) => {
     setLoading(true);
     try {
       const { data } = await axios.post("/api/auth/register", {
         name,
         email,
         password,
-        phone
+        phone,
+        deliveryAddress,
       });
-      setUser(data);
-      localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
-      return { success: true };
+      return { success: true, message: data.message, email: data.email };
     } catch (error) {
       setLoading(false);
       return {

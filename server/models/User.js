@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: [true, "Please provide a password"],
-      minlength: 6,
+      minlength: 8,
       select: false,
     },
     role: {
@@ -31,6 +31,10 @@ const userSchema = new mongoose.Schema(
     phone: {
       type: String,
     },
+    deliveryAddress: {
+      type: String,
+      default: "",
+    },
     address: {
       street: String,
       city: String,
@@ -42,6 +46,46 @@ const userSchema = new mongoose.Schema(
         ref: "Product",
       },
     ],
+
+    // ── Email Verification ─────────────────────────────────────────────────────
+    isVerified: {
+      type: Boolean,
+      default: false,
+    },
+    otpHash: {
+      type: String,
+      select: false,
+    },
+    otpExpiry: {
+      type: Date,
+    },
+    otpAttempts: {
+      type: Number,
+      default: 0,
+    },
+    otpLastSent: {
+      type: Date,
+    },
+
+    // ── Password Reset ─────────────────────────────────────────────────────────
+    resetOtpHash: {
+      type: String,
+      select: false,
+    },
+    resetOtpExpiry: {
+      type: Date,
+    },
+    resetOtpAttempts: {
+      type: Number,
+      default: 0,
+    },
+    resetTokenHash: {
+      type: String,
+      select: false,
+    },
+    resetTokenExpiry: {
+      type: Date,
+    },
   },
   { timestamps: true }
 );

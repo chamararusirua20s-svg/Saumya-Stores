@@ -14,7 +14,18 @@ const connectDB = require("./config/db");
 const demo = require("./controllers/demoController");
 
 // ── Real controllers (for inline use) ────────────────────────────────────────
-const { loginUser, registerUser, getUserProfile, changePassword, getUsers } = require("./controllers/authController");
+const {
+  loginUser,
+  registerUser,
+  verifyRegistrationOTP,
+  resendRegistrationOTP,
+  getUserProfile,
+  changePassword,
+  forgotPassword,
+  verifyResetOTP,
+  resetPassword,
+  getUsers,
+} = require("./controllers/authController");
 const { protect, admin } = require("./middleware/authMiddleware");
 
 // ── Real route modules (for complex routes) ───────────────────────────────────
@@ -112,6 +123,33 @@ app.post("/api/auth/login", (req, res) => {
 app.post("/api/auth/register", (req, res) => {
   if (isDBConnected()) return registerUser(req, res);
   return demo.demoRegister(req, res);
+});
+
+app.post("/api/auth/verify-otp", (req, res) => {
+  if (isDBConnected()) return verifyRegistrationOTP(req, res);
+  // Demo mode: auto-verify
+  return res.json({ message: "Email verified successfully! You can now log in." });
+});
+
+app.post("/api/auth/resend-otp", (req, res) => {
+  if (isDBConnected()) return resendRegistrationOTP(req, res);
+  return res.json({ message: "A new verification code has been sent." });
+});
+
+app.post("/api/auth/forgot-password", (req, res) => {
+  if (isDBConnected()) return forgotPassword(req, res);
+  return res.json({ message: "If this email is registered, a password reset code has been sent.", email: req.body.email });
+});
+
+app.post("/api/auth/verify-reset-otp", (req, res) => {
+  if (isDBConnected()) return verifyResetOTP(req, res);
+  // Demo: return a mock reset token
+  return res.json({ message: "OTP verified.", resetToken: "demo_reset_token", email: req.body.email });
+});
+
+app.post("/api/auth/reset-password", (req, res) => {
+  if (isDBConnected()) return resetPassword(req, res);
+  return res.json({ message: "Password reset successfully. You can now log in with your new password." });
 });
 
 app.get("/api/auth/profile", universalProtect, (req, res) => {
